@@ -4,6 +4,7 @@
  * @file opcode_impl.h
  */
 #include "opcode_impl.h"
+#include <stdexcept>
 
 unimplemented::unimplemented(OPCODES code) : code(code) {}
 
@@ -102,7 +103,7 @@ void in_op::process(micro_vm *vm, std::int8_t data) {
     size_t r1 = reg1(data);
     char tmp;
     bool eof = in.get(tmp).eof();
-    vm->set_reg(r1, tmp);
+    vm->set_reg(r1, uint8_t(tmp & 0xffu));
     vm->set_flag(micro_vm::FEOF, eof);
     vm->inc_ip(instruction_size);
 }
