@@ -20,6 +20,11 @@ public:
      * @param data opcode parameters
      */
     virtual void process(micro_vm *, std::int8_t) = 0;
+
+    /**
+     * destructor
+     */
+    virtual ~opcode();
 };
 
 #endif //MICROVM_OPCODE_H

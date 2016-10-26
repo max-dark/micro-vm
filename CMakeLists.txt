@@ -10,7 +10,7 @@ set(SRC_LIST
         src/microvm/opcode.h
         src/microvm/opcode_impl.h
         src/microvm/opcode_impl.cpp
-        )
+        src/microvm/opcode.cpp)
 add_executable(${PROJECT_NAME} ${SRC_LIST})
 add_executable(decryptor src/decryptor.cpp)
 configure_file(vm_test/decryptor.bin ${CMAKE_BINARY_DIR}/decryptor.bin COPYONLY)
