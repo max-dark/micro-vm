@@ -7,7 +7,7 @@
 #define MICROVM_OPCODE_IMPL_H
 
 #include "opcode.h"
-#include "micro_vm.h"
+#include "abstract_vm.h"
 #include <fstream>
 #include <ostream>
 
@@ -49,7 +49,7 @@ public:
      * @param vm unused
      * @param data unused
      */
-    void process(micro_vm *, std::int8_t) override;
+    virtual void execute(abstract_vm *, std::int8_t) override;
 
 private:
     OPCODES code;
@@ -64,7 +64,7 @@ public:
      * @param vm virtual machine
      * @param data 2 packed register id
      */
-    void process(micro_vm *, std::int8_t) override;
+    virtual void execute(abstract_vm *, std::int8_t) override;
 };
 
 /**
@@ -76,7 +76,7 @@ public:
      * @param vm virtual machine
      * @param data 2 packed register id
      */
-    void process(micro_vm *, std::int8_t) override;
+    virtual void execute(abstract_vm *, std::int8_t) override;
 };
 
 /**
@@ -88,7 +88,7 @@ public:
      * @param vm virtual machine
      * @param data 2 packed register id
      */
-    void process(micro_vm *, std::int8_t) override;
+    virtual void execute(abstract_vm *, std::int8_t) override;
 };
 
 /**
@@ -100,7 +100,7 @@ public:
      * @param vm virtual machine
      * @param data constant
      */
-    void process(micro_vm *, std::int8_t) override;
+    virtual void execute(abstract_vm *, std::int8_t) override;
 };
 
 /**
@@ -112,7 +112,7 @@ public:
      * @param vm virtual machine
      * @param data 2 packed register id
      */
-    void process(micro_vm *, std::int8_t) override;
+    virtual void execute(abstract_vm *, std::int8_t) override;
 };
 
 /**
@@ -124,7 +124,7 @@ public:
      * @param vm virtual machine
      * @param data 2 packed register id
      */
-    void process(micro_vm *, std::int8_t) override;
+    virtual void execute(abstract_vm *, std::int8_t) override;
 };
 
 /**
@@ -136,7 +136,7 @@ public:
      * @param vm virtual machine
      * @param data addres shift
      */
-    void process(micro_vm *, std::int8_t) override;
+    virtual void execute(abstract_vm *, std::int8_t) override;
 };
 
 /**
@@ -148,7 +148,7 @@ public:
      * @param vm virtual machine
      * @param data addres shift
      */
-    void process(micro_vm *, std::int8_t) override;
+    virtual void execute(abstract_vm *, std::int8_t) override;
 };
 
 /**
@@ -160,7 +160,7 @@ public:
      * @param vm virtual machine
      * @param data addres shift
      */
-    void process(micro_vm *, std::int8_t) override;
+    virtual void execute(abstract_vm *, std::int8_t) override;
 };
 
 /**
@@ -172,7 +172,7 @@ public:
      * @param vm virtual machine
      * @param data addres shift
      */
-    void process(micro_vm *, std::int8_t) override;
+    virtual void execute(abstract_vm *, std::int8_t) override;
 };
 /**
  * halt VM
@@ -183,7 +183,7 @@ public:
      * @param vm virtual machine
      * @param data unused
      */
-    void process(micro_vm *vm, std::int8_t) override;
+    virtual void execute(abstract_vm *vm, std::int8_t) override;
 };
 
 /**
@@ -195,7 +195,7 @@ public:
      * @param vm virtual machine
      * @param data 2 packed register id
      */
-    void process(micro_vm *vm, std::int8_t) override;
+    virtual void execute(abstract_vm *vm, std::int8_t) override;
 };
 
 /**
@@ -207,7 +207,7 @@ public:
      * @param vm virtual machine
      * @param data 2 packed register id
      */
-    void process(micro_vm *vm, std::int8_t) override;
+    virtual void execute(abstract_vm *vm, std::int8_t) override;
 };
 
 /**
@@ -219,7 +219,7 @@ public:
      * @param vm virtual machine
      * @param data 2 packed register id
      */
-    void process(micro_vm *vm, std::int8_t) override;
+    virtual void execute(abstract_vm *vm, std::int8_t) override;
 };
 
 /**
@@ -231,7 +231,7 @@ public:
      * @param vm virtual machine
      * @param data 2 packed register id
      */
-    void process(micro_vm *vm, std::int8_t) override;
+    virtual void execute(abstract_vm *vm, std::int8_t) override;
 };
 
 /**
@@ -248,7 +248,7 @@ public:
      * @param vm virtual machine
      * @param data 2 packed register id
      */
-    void process(micro_vm *vm, std::int8_t) override;
+    virtual void execute(abstract_vm *vm, std::int8_t) override;
 private:
     /**
      * input stream
@@ -270,7 +270,7 @@ public:
      * @param vm virtual machine
      * @param data 2 packed register id
      */
-    void process(micro_vm *vm, std::int8_t) override;
+    virtual void execute(abstract_vm *vm, std::int8_t) override;
 private:
     /**
      * output stream

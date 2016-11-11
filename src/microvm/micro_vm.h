@@ -8,21 +8,53 @@
 
 #include <cstdint>
 #include <string>
+#include "abstract_vm.h"
 
-class opcode;
+#include "opcode.h"
 
 /**
  * simple virtual machine
  */
-class micro_vm {
+class micro_vm : public abstract_vm {
 public:
     enum constants {
         reg_count = 16,
         mem_size = 256
     };
-    enum FLAGS {
-        FEOF, ZERO, HALT
-    };
+
+    /**
+     * get register value
+     * @param id register id
+     * @return register value
+     */
+    virtual uint8_t get_reg(std::size_t) override;
+
+    /**
+     * set register value
+     * @param id register id
+     * @param value new value
+     */
+    virtual void set_reg(std::size_t, uint8_t) override;
+
+    /**
+     * get flag state
+     * @param id flag id
+     * @return flag state
+     */
+    virtual bool get_flag(std::size_t) override;
+
+    /**
+     * get flag state
+     * @param id flag id
+     * @return flag state
+     */
+    virtual void set_flag(std::size_t, bool) override;
+
+    /**
+     * increment instruction pointer
+     * @param offset address offset
+     */
+    virtual void inc_ip(int8_t offset) override;
 
     /**
      * register opcode pair(code -> handler)
@@ -45,40 +77,6 @@ public:
      * main loop
      */
     void run();
-
-    /**
-     * get register value
-     * @param id register id
-     * @return register value
-     */
-    std::uint8_t get_reg(std::size_t);
-
-    /**
-     * set register value
-     * @param id register id
-     * @param value new value
-     */
-    void set_reg(std::size_t, std::uint8_t);
-
-    /**
-     * get flag state
-     * @param id flag id
-     * @return flag state
-     */
-    bool get_flag(std::size_t);
-
-    /**
-     * get flag state
-     * @param id flag id
-     * @return flag state
-     */
-    void set_flag(std::size_t, bool);
-
-    /**
-     * increment instruction pointer
-     * @param offset address offset
-     */
-    void inc_ip(int8_t offset);
 
     /**
      * read program from file
@@ -114,7 +112,7 @@ public:
     /**
      * destructor
      */
-    ~micro_vm();
+    virtual ~micro_vm();
 
 private:
     /**

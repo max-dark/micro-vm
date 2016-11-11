@@ -5,9 +5,8 @@
  */
 
 #include "micro_vm.h"
-#include "opcode.h"
 
-#include <utility>
+#include <algorithm>
 #include <map>
 #include <memory>
 #include <fstream>
@@ -64,13 +63,13 @@ void micro_vm::register_opcode(std::uint8_t code, opcode *op) {
 
 bool micro_vm::stopped() { return get_flag(HALT); }
 
-std::uint8_t micro_vm::get_reg(std::size_t id) {
+uint8_t micro_vm::get_reg(std::size_t id) {
     return self->reg[id];
 }
 
-void micro_vm::set_reg(std::size_t id, std::uint8_t value) {
+void micro_vm::set_reg(std::size_t id, uint8_t value) {
     self->reg[id] = value;
-    set_flag(micro_vm::ZERO, value == 0);
+    set_flag(ZERO, value == 0);
 }
 
 bool micro_vm::get_flag(std::size_t id) {
@@ -97,7 +96,7 @@ void micro_vm::do_step() {
         throw std::runtime_error("unknown opcode " + std::to_string(code));
     }
     // call handler
-    op->second->process(this, self->mem[self->ip + 1]);
+    op->second->execute(this, self->mem[self->ip + 1]);
 }
 
 void micro_vm::run() {
@@ -112,7 +111,7 @@ void micro_vm::inc_ip(int8_t offset) {
         ssize_t ip = self->ip + offset;
         if (ip < 0 || ip >= mem_size) {
             throw std::runtime_error(
-                    "offset "+std::to_string(offset)+" outside memory. unable move to " + std::to_string(ip)
+                    "offset " + std::to_string(offset) + " outside memory. unable move to " + std::to_string(ip)
             );
         }
     }

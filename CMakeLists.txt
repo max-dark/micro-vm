@@ -5,6 +5,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 set(SRC_LIST
         src/main.cpp
+        src/microvm/abstract_vm.cpp
+        src/microvm/abstract_vm.h
         src/microvm/micro_vm.cpp
         src/microvm/micro_vm.h
         src/microvm/opcode.h
